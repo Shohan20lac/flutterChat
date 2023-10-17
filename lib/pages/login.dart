@@ -1,6 +1,8 @@
 import 'package:fchat/components/my_button.dart';
 import 'package:fchat/components/my_text_field.dart';
+import 'package:fchat/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   final void Function()? onTap;
@@ -13,6 +15,19 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void signIn() async {
+    // get authservice isntance
+    final authService = Provider.of<AuthService>(context, listen: false);
+
+    try {
+      await authService.signInWithEmailandPassword(
+          emailController.text, passwordController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +54,7 @@ class _LoginState extends State<Login> {
                 hintText: 'Password',
                 obscureText: false),
             const SizedBox(height: 20),
-            MyButton(onTap: () {}, text: 'Log In'),
+            MyButton(onTap: signIn, text: 'Log In'),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

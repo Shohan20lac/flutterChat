@@ -11,7 +11,7 @@ class MyButton extends StatelessWidget {
         onTap: onTap,
         child: Container(
             constraints: const BoxConstraints(maxWidth: 300),
-            width: 100,
+            width: 120,
             height: 50,
             decoration: BoxDecoration(
                 color: Colors.black, borderRadius: BorderRadius.circular(10)),

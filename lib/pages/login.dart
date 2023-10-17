@@ -16,13 +16,21 @@ class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  bool isLoading = false;
+
   void signIn() async {
     // get authservice isntance
     final authService = Provider.of<AuthService>(context, listen: false);
 
     try {
+      setState(() {
+        isLoading = true;
+      });
       await authService.signInWithEmailandPassword(
           emailController.text, passwordController.text);
+      setState(() {
+        isLoading = false;
+      });
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
@@ -54,13 +62,18 @@ class _LoginState extends State<Login> {
                 hintText: 'Password',
                 obscureText: false),
             const SizedBox(height: 20),
-            MyButton(onTap: signIn, text: 'Log In'),
+            Row(
+              children: [
+                MyButton(onTap: signIn, text: 'Log In'),
+                if (isLoading) const CircularProgressIndicator()
+              ],
+            ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Not a member?'),
-                SizedBox(
+                const Text('Not a member?'),
+                const SizedBox(
                   width: 20,
                 ),
                 GestureDetector(

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "452007456438",
+    "project_id": "flutterchat-da678",
+    "storage_bucket": "flutterchat-da678.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452007456438:android:98cf6527dfcbb7bad9c017",
+        "android_client_info": {
+          "package_name": "com.example.fchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD7k9SEKVExJnWPp2IEQ1YfSs_WjW4yKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

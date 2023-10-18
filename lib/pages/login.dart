@@ -1,3 +1,4 @@
+import 'package:fchat/components/identity_screen.dart';
 import 'package:fchat/components/my_button.dart';
 import 'package:fchat/components/my_text_field.dart';
 import 'package:fchat/services/auth/auth_service.dart';
@@ -39,50 +40,39 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Center(
-              child: Icon(Icons.message, size: 80),
-            ),
-            const Text('Welcome Back!',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 20),
-            MyTextField(
-                controller: emailController,
-                hintText: 'Email',
-                obscureText: false),
-            const SizedBox(height: 20),
-            MyTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: false),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                MyButton(onTap: signIn, text: 'Log In'),
-                if (isLoading) const CircularProgressIndicator()
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Not a member?'),
-                const SizedBox(
-                  width: 20,
-                ),
-                GestureDetector(
-                    onTap: widget.onTap, child: const Text('Sign up'))
-              ],
-            )
-          ],
-        ),
+    return IdentityScreen(children: [
+      const Center(
+        child: Icon(Icons.message, size: 80),
       ),
-    ));
+      const Text('Welcome Back!',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+      const SizedBox(height: 20),
+      MyTextField(
+          controller: emailController, hintText: 'Email', obscureText: false),
+      const SizedBox(height: 20),
+      MyTextField(
+          controller: passwordController,
+          hintText: 'Password',
+          obscureText: false),
+      const SizedBox(height: 20),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MyButton(onTap: signIn, text: 'Log In'),
+          if (isLoading) const CircularProgressIndicator()
+        ],
+      ),
+      const SizedBox(height: 20),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Not a member?'),
+          const SizedBox(
+            width: 20,
+          ),
+          GestureDetector(onTap: widget.onTap, child: const Text('Sign up'))
+        ],
+      )
+    ]);
   }
 }

@@ -14,15 +14,18 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade200)),
-          focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-          hintText: hintText),
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 300),
+      child: TextField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey.shade200)),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+            hintText: hintText),
+      ),
     );
   }
 }
